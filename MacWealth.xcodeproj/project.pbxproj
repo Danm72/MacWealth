@@ -12,6 +12,11 @@
 		374EB28F1EE9AEAF00F4F643 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 374EB28D1EE9AEAF00F4F643 /* Main.storyboard */; };
 		374EB29D1EE9B28A00F4F643 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374EB29C1EE9B28A00F4F643 /* APIClient.swift */; };
 		3760AEC81EEC094E00EB2C59 /* AccountPerformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3760AEC71EEC094E00EB2C59 /* AccountPerformance.swift */; };
+		376C4C2E1EEEEEBE00D85AC1 /* AccountSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C4C2D1EEEEEBE00D85AC1 /* AccountSummary.swift */; };
+		376C4C301EEEF1AA00D85AC1 /* EquityPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C4C2F1EEEF1AA00D85AC1 /* EquityPosition.swift */; };
+		376C4C331EEEFD2500D85AC1 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C4C321EEEFD2500D85AC1 /* PopoverViewController.swift */; };
+		376C4C351EEF3A6800D85AC1 /* EquitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C4C341EEF3A6800D85AC1 /* EquitiesViewController.swift */; };
+		376C4C371EEF3D5100D85AC1 /* BuildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376C4C361EEF3D5100D85AC1 /* BuildView.swift */; };
 		376E0A7B1EEAEAC500BAB7D3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E0A7A1EEAEAC500BAB7D3 /* Account.swift */; };
 		376E0A7D1EEAF2C400BAB7D3 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E0A7C1EEAF2C400BAB7D3 /* Position.swift */; };
 		377957521EEDBAE9006E15FC /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377957511EEDBAE9006E15FC /* StatusMenuController.swift */; };
@@ -34,6 +39,11 @@
 		374EB2911EE9AEAF00F4F643 /* MacWealth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacWealth.entitlements; sourceTree = "<group>"; };
 		374EB29C1EE9B28A00F4F643 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		3760AEC71EEC094E00EB2C59 /* AccountPerformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPerformance.swift; sourceTree = "<group>"; };
+		376C4C2D1EEEEEBE00D85AC1 /* AccountSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSummary.swift; sourceTree = "<group>"; };
+		376C4C2F1EEEF1AA00D85AC1 /* EquityPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EquityPosition.swift; sourceTree = "<group>"; };
+		376C4C321EEEFD2500D85AC1 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopoverViewController.swift; path = Views/PopoverViewController.swift; sourceTree = "<group>"; };
+		376C4C341EEF3A6800D85AC1 /* EquitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EquitiesViewController.swift; path = Views/EquitiesViewController.swift; sourceTree = "<group>"; };
+		376C4C361EEF3D5100D85AC1 /* BuildView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuildView.swift; path = Views/BuildView.swift; sourceTree = "<group>"; };
 		376E0A7A1EEAEAC500BAB7D3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		376E0A7C1EEAF2C400BAB7D3 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		377957511EEDBAE9006E15FC /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
@@ -88,6 +98,7 @@
 		374EB2861EE9AEAF00F4F643 /* MacWealth */ = {
 			isa = PBXGroup;
 			children = (
+				376C4C311EEEFD0700D85AC1 /* Views */,
 				37EEF4841EE9BF0900711286 /* Services */,
 				374EB2981EE9B0F600F4F643 /* Application */,
 				374EB2991EE9B0FB00F4F643 /* Assets */,
@@ -107,6 +118,8 @@
 				376E0A7A1EEAEAC500BAB7D3 /* Account.swift */,
 				376E0A7C1EEAF2C400BAB7D3 /* Position.swift */,
 				3760AEC71EEC094E00EB2C59 /* AccountPerformance.swift */,
+				376C4C2D1EEEEEBE00D85AC1 /* AccountSummary.swift */,
+				376C4C2F1EEEF1AA00D85AC1 /* EquityPosition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,6 +141,16 @@
 				374EB28D1EE9AEAF00F4F643 /* Main.storyboard */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		376C4C311EEEFD0700D85AC1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				376C4C321EEEFD2500D85AC1 /* PopoverViewController.swift */,
+				376C4C341EEF3A6800D85AC1 /* EquitiesViewController.swift */,
+				376C4C361EEF3D5100D85AC1 /* BuildView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		37EEF4841EE9BF0900711286 /* Services */ = {
@@ -273,17 +296,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				376E0A7D1EEAF2C400BAB7D3 /* Position.swift in Sources */,
+				376C4C371EEF3D5100D85AC1 /* BuildView.swift in Sources */,
 				3760AEC81EEC094E00EB2C59 /* AccountPerformance.swift in Sources */,
 				374EB2881EE9AEAF00F4F643 /* AppDelegate.swift in Sources */,
 				37EEF48D1EE9BF0900711286 /* SessionsServices.swift in Sources */,
 				37EEF48F1EE9BF0900711286 /* Session.swift in Sources */,
 				37EEF4901EE9BF0900711286 /* User.swift in Sources */,
 				377957521EEDBAE9006E15FC /* StatusMenuController.swift in Sources */,
+				376C4C331EEEFD2500D85AC1 /* PopoverViewController.swift in Sources */,
 				376E0A7B1EEAEAC500BAB7D3 /* Account.swift in Sources */,
 				37EEF4911EE9BF0900711286 /* UserStatus.swift in Sources */,
 				37EEF48E1EE9BF0900711286 /* UsersServices.swift in Sources */,
+				376C4C2E1EEEEEBE00D85AC1 /* AccountSummary.swift in Sources */,
 				374EB29D1EE9B28A00F4F643 /* APIClient.swift in Sources */,
 				37EEF48C1EE9BF0900711286 /* AccountsServices.swift in Sources */,
+				376C4C301EEEF1AA00D85AC1 /* EquityPosition.swift in Sources */,
+				376C4C351EEF3A6800D85AC1 /* EquitiesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

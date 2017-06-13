@@ -12,7 +12,10 @@ target 'MacWealth' do
 
   pod 'Alamofire'
   pod 'AlamofireObjectMapper', '~> 4.0'
-  
+  pod 'RxSwift',    '~> 3.0'
+  pod 'RxCocoa',    '~> 3.0'
+  pod 'RxAlamofire'
+
   # Pods for MacWealth
   post_install do |installer|
       installer.pods_project.targets.each do |target|
