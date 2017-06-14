@@ -15,6 +15,7 @@ struct EquityPosition: Mappable {
     private(set) var unrealizedDayPL: Double = 0
     private(set) var symbol: String = ""
     private(set) var costBasis: Double = 0.0
+    private(set) var mktPrice: Double = 0.0
 
     init?(map: Map) { }
     
@@ -24,5 +25,6 @@ struct EquityPosition: Mappable {
         unrealizedDayPL <- map["unrealizedDayPL"]
         symbol <- map["symbol"]
         costBasis <- map["costBasis"]
+        mktPrice <- map["mktPrice"]
     }
 }

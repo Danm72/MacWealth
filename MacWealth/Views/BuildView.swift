@@ -19,7 +19,7 @@ class BuildView: NSTableCellView {
     var url : NSURL!
     
     func setupForBuild(position: EquityPosition) {
-        statusAndSubject.stringValue = "\(position.symbol)"
+        statusAndSubject.stringValue = "\(position.symbol) - \(position.mktPrice)"
         branchName.stringValue = "$\(position.unrealizedDayPL)"
         overallPL.stringValue = "$\(position.unrealizedPL)"
         totalValue.stringValue = "$\(position.costBasis)"
