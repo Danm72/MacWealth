@@ -20,6 +20,7 @@
 		376E0A7B1EEAEAC500BAB7D3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E0A7A1EEAEAC500BAB7D3 /* Account.swift */; };
 		376E0A7D1EEAF2C400BAB7D3 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E0A7C1EEAF2C400BAB7D3 /* Position.swift */; };
 		377957521EEDBAE9006E15FC /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377957511EEDBAE9006E15FC /* StatusMenuController.swift */; };
+		37AB31A61EF013D5002E50AA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AB31A51EF013D5002E50AA /* SettingsViewController.swift */; };
 		37EEF48C1EE9BF0900711286 /* AccountsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EEF4851EE9BF0900711286 /* AccountsServices.swift */; };
 		37EEF48D1EE9BF0900711286 /* SessionsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EEF4861EE9BF0900711286 /* SessionsServices.swift */; };
 		37EEF48E1EE9BF0900711286 /* UsersServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EEF4871EE9BF0900711286 /* UsersServices.swift */; };
@@ -46,7 +47,8 @@
 		376C4C361EEF3D5100D85AC1 /* BuildView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuildView.swift; path = Views/BuildView.swift; sourceTree = "<group>"; };
 		376E0A7A1EEAEAC500BAB7D3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		376E0A7C1EEAF2C400BAB7D3 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
-		377957511EEDBAE9006E15FC /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		377957511EEDBAE9006E15FC /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusMenuController.swift; path = Application/StatusMenuController.swift; sourceTree = "<group>"; };
+		37AB31A51EF013D5002E50AA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Views/SettingsViewController.swift; sourceTree = "<group>"; };
 		37EEF4851EE9BF0900711286 /* AccountsServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountsServices.swift; sourceTree = "<group>"; };
 		37EEF4861EE9BF0900711286 /* SessionsServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsServices.swift; sourceTree = "<group>"; };
 		37EEF4871EE9BF0900711286 /* UsersServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersServices.swift; sourceTree = "<group>"; };
@@ -129,7 +131,6 @@
 			children = (
 				374EB2871EE9AEAF00F4F643 /* AppDelegate.swift */,
 				374EB29C1EE9B28A00F4F643 /* APIClient.swift */,
-				377957511EEDBAE9006E15FC /* StatusMenuController.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -146,9 +147,11 @@
 		376C4C311EEEFD0700D85AC1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				377957511EEDBAE9006E15FC /* StatusMenuController.swift */,
 				376C4C321EEEFD2500D85AC1 /* PopoverViewController.swift */,
 				376C4C341EEF3A6800D85AC1 /* EquitiesViewController.swift */,
 				376C4C361EEF3D5100D85AC1 /* BuildView.swift */,
+				37AB31A51EF013D5002E50AA /* SettingsViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				37EEF48C1EE9BF0900711286 /* AccountsServices.swift in Sources */,
 				376C4C301EEEF1AA00D85AC1 /* EquityPosition.swift in Sources */,
 				376C4C351EEF3A6800D85AC1 /* EquitiesViewController.swift in Sources */,
+				37AB31A61EF013D5002E50AA /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +388,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -433,6 +438,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -446,6 +452,7 @@
 				DEVELOPMENT_TEAM = F494PUS3QC;
 				INFOPLIST_FILE = MacWealth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = io.mawla.MacWealth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -463,6 +470,7 @@
 				DEVELOPMENT_TEAM = F494PUS3QC;
 				INFOPLIST_FILE = MacWealth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = io.mawla.MacWealth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;

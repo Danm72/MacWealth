@@ -26,6 +26,7 @@ class StatusMenuController: NSObject {
     var timer: Timer!
     var models: [EquityPosition]?
     var profitLoss = ProfitLoss(dailyPL: 0, overallPL: 0, equityValue: 0)
+    let interval = 5
     
     public struct ProfitLoss {
         var dailyPL: Double = 0.0
@@ -35,7 +36,7 @@ class StatusMenuController: NSObject {
     
     override func awakeFromNib() {
         // Insert code here to initialize your application
-        print("ran")
+        print("Startup")
         statusItem.title = "MacWealth"
         statusItem.menu = statusMenu
         statusItem.view = statusHolder
@@ -44,9 +45,39 @@ class StatusMenuController: NSObject {
         let gesture = NSClickGestureRecognizer(target: self, action:  #selector (self.openPopover(sender:)))
         gesture.numberOfClicksRequired = 1
         statusHolder.addGestureRecognizer(gesture)
-
-        setupSession()
+        
         setupEvents()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(StatusMenuController.validateUserSettingsAndStartRequests),
+            name: NSNotification.Name(rawValue: "SettingsChanged"),
+            object: nil
+        )
+        
+        self.validateUserSettingsAndStartRequests()
+    }
+    
+    func validateUserSettingsAndStartRequests() {
+        let validation = self.validateKey(key: "PasswordKey")
+            && self.validateKey(key: "UsernameKey")
+        
+        if (validation) {
+//            allBuilds = nil
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdatedEquities"), object: nil)
+            setupSession()
+        } else {
+            stop()
+        }
+    }
+    
+    private func validateKey(key : String) -> Bool {
+        let userDefaults = UserDefaults.standard
+        if userDefaults.string(forKey: key) != nil {
+            return true;
+        } else {
+            return false
+        }
     }
     
     func setupEvents(){
@@ -54,7 +85,6 @@ class StatusMenuController: NSObject {
     }
     
     func openPopover(sender:NSClickGestureRecognizer){
-        print("Opening Popover")
         
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         let popoverController = storyboard.instantiateController(withIdentifier: "PopoverViewController") as! PopoverViewController
@@ -78,7 +108,7 @@ class StatusMenuController: NSObject {
         self.getAccount()
         
         timer = Timer.scheduledTimer(
-            timeInterval: TimeInterval(15),
+            timeInterval: TimeInterval(interval),
             target: self,
             selector: #selector(StatusMenuController.getAccount),
             userInfo: nil, repeats: true
@@ -93,7 +123,9 @@ class StatusMenuController: NSObject {
     }
     
     func setupSession(){
-        let sessionRequest = SessionsServices.CreateSessionRequest(username: "USER", password: "PASS")
+        let userDefaults = UserDefaults.standard
+
+        let sessionRequest = SessionsServices.CreateSessionRequest(username: userDefaults.string(forKey: "UsernameKey")!, password: userDefaults.string(forKey: "PasswordKey")!)
         
         SessionsServices.createSession(request: sessionRequest, success: { s in
             self.session = s
@@ -101,7 +133,6 @@ class StatusMenuController: NSObject {
         }, failure: { (error) in
             print(error.localizedDescription)
         })
-        
     }
     
     func getUser(session: Session){
@@ -138,7 +169,8 @@ class StatusMenuController: NSObject {
         AccountsServices.getAccountSummary(session: self.session, userID: session.userID, accountID: account.id, success: {
             summary in
             self.models = summary.positions
-            
+            self.profitLoss = ProfitLoss(dailyPL: 0, overallPL: 0, equityValue: 0)
+
             self.updateUI(summary: summary)
         }, failure: { (error) in
             print(error.localizedDescription)
@@ -155,6 +187,12 @@ class StatusMenuController: NSObject {
         
         profitLoss.equityValue = summary.equityValue
         
+        if self.popover.isShown {
+            (self.popover.contentViewController as! PopoverViewController).models = self.models
+            (self.popover.contentViewController as! PopoverViewController).profitLoss = self.profitLoss
+            (self.popover.contentViewController as! PopoverViewController).updateEq()
+        }
+        
         self.dayText.stringValue = "\(profitLoss.dailyPL)"
         self.overallText.stringValue = "\(profitLoss.overallPL)"
         if(profitLoss.dailyPL < 0){
@@ -169,7 +207,7 @@ class StatusMenuController: NSObject {
             self.overallImg.image = #imageLiteral(resourceName: "up")
         }
 
-        print("\n\n DailyPL: \(profitLoss.dailyPL) : OverallPL: \(profitLoss.overallPL)")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UpdatedEquities"), object: nil)
     }
     
     @IBAction func quitClicked(_ sender: Any) {

@@ -29,7 +29,12 @@ class EquitiesViewController: NSViewController, NSTableViewDelegate, NSTableView
     }
     
     override func viewWillAppear() {
-
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(EquitiesViewController.reloadBuilds),
+            name: NSNotification.Name(rawValue: "UpdatedEquities"),
+            object: nil
+        )
     }
     
     override func viewDidAppear() {
@@ -40,24 +45,28 @@ class EquitiesViewController: NSViewController, NSTableViewDelegate, NSTableView
     }
     
     func reloadBuilds() {
-        print("Reload builds!")
         setupFallBackViews()
         buildsTable.reloadData()
-        
-        totalLabel.stringValue = "\(profitLoss.equityValue)"
-        dayLabel.stringValue = "\(profitLoss.dailyPL)"
-        overallPLLabel.stringValue = "\(profitLoss.overallPL)"
-        
-        if(profitLoss.dailyPL < 0){
-            self.dayImageView.image = #imageLiteral(resourceName: "down")
-        }else {
-            self.dayImageView.image = #imageLiteral(resourceName: "up")
-        }
-        
-        if(profitLoss.overallPL < 0){
-            self.overallPLImage.image = #imageLiteral(resourceName: "down")
-        }else {
-            self.overallPLImage.image = #imageLiteral(resourceName: "up")
+        reloadHeader()
+    }
+    
+    func reloadHeader(){
+        if(profitLoss != nil) {
+            totalLabel.stringValue = "\(profitLoss.equityValue)"
+            dayLabel.stringValue = "\(profitLoss.dailyPL)"
+            overallPLLabel.stringValue = "\(profitLoss.overallPL)"
+            
+            if(profitLoss.dailyPL < 0){
+                self.dayImageView.image = #imageLiteral(resourceName: "down")
+            }else {
+                self.dayImageView.image = #imageLiteral(resourceName: "up")
+            }
+            
+            if(profitLoss.overallPL < 0){
+                self.overallPLImage.image = #imageLiteral(resourceName: "down")
+            }else {
+                self.overallPLImage.image = #imageLiteral(resourceName: "up")
+            }
         }
     }
     
@@ -66,10 +75,10 @@ class EquitiesViewController: NSViewController, NSTableViewDelegate, NSTableView
         buildsTable.isHidden = true
 
         if (models == nil) {
-            return fallbackView.stringValue = "Loading Recent Builds"
+            return fallbackView.stringValue = "Loading Recent Equities"
         }
         if (models.count == 0) {
-            return fallbackView.stringValue = "No Recent Builds Found"
+            return fallbackView.stringValue = "No Recent Equities Found"
         }else {
             fallbackView.isHidden = true
             buildsTable.isHidden = false

@@ -18,7 +18,7 @@ class PopoverViewController: NSViewController {
     @IBOutlet weak var shutdownButton : NSButton!
     @IBOutlet weak var opacityFixView: NSImageView!
     
-//    var settingsViewController : SettingsController!
+    var settingsViewController : SettingsViewController!
     var equitiesViewController : EquitiesViewController!
     var models : [EquityPosition]!
     var profitLoss : StatusMenuController.ProfitLoss!
@@ -46,7 +46,7 @@ class PopoverViewController: NSViewController {
 //            opacityFixView.image = NSImage(named: "opacity-fix-light")
 //        }
 
-        //        settingsViewController.parent = self
+        settingsViewController.parentView = self
         equitiesViewController.models = models
         equitiesViewController.profitLoss = profitLoss
 //        updatesViewController.applicationStatus = self.applicationStatus
@@ -55,10 +55,15 @@ class PopoverViewController: NSViewController {
         subcontrollerView.addSubview(equitiesViewController.view)
     }
     
+    public func updateEq(){
+        equitiesViewController.models = models
+        equitiesViewController.profitLoss = profitLoss
+    }
+    
     private func setupStoryboardControllers() {
 //
         let storyboard = NSStoryboard(name: "Main", bundle: nil);
-//        settingsViewController = storyboard?.instantiateControllerWithIdentifier("SettingsController") as! SettingsController
+        settingsViewController = storyboard.instantiateController(withIdentifier: "SettingsViewController") as! SettingsViewController
         equitiesViewController = storyboard.instantiateController(withIdentifier: "EquitiesViewController") as! EquitiesViewController
 //        updatesViewController = storyboard?.instantiateControllerWithIdentifier("UpdatesController") as! UpdatesController
     }
@@ -81,8 +86,8 @@ class PopoverViewController: NSViewController {
         openUpdatesButton.isHidden = true
         shutdownButton.isHidden = true
 //        openBuildsButton.isHidden = false
-//        buildsViewController.view.removeFromSuperview()
-//        subcontrollerView.addSubview(settingsViewController.view)
+        equitiesViewController.view.removeFromSuperview()
+        subcontrollerView.addSubview(settingsViewController.view)
     }
     
     @IBAction func openBuilds(sender: NSButton) {
@@ -90,7 +95,7 @@ class PopoverViewController: NSViewController {
 //        openBuildsButton.isHidden = true;
         shutdownButton.isHidden = false
         openSettingsButton.isHidden = false
-//        settingsViewController.view.removeFromSuperview()
+        settingsViewController.view.removeFromSuperview()
 //        updatesViewController.view.removeFromSuperview()
         subcontrollerView.addSubview(equitiesViewController.view)
     }

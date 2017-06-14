@@ -23,5 +23,17 @@ class BuildView: NSTableCellView {
         branchName.stringValue = "$\(position.unrealizedDayPL)"
         overallPL.stringValue = "$\(position.unrealizedPL)"
         totalValue.stringValue = "$\(position.costBasis)"
+        
+        if(position.unrealizedDayPL > 0){
+            statusAndSubject.textColor = .green
+        }else {
+            statusAndSubject.textColor = .red
+        }
+        
+        if(position.unrealizedPL < 0){
+            overallPL.textColor = .red
+        }else {
+            overallPL.textColor = .green
+        }
     }
 }
